@@ -1,0 +1,122 @@
+<ion-list class="post-list">
+    <ion-card *ngFor="let post of timeline">
+        <ion-item>
+            <ion-avatar style="cursor: pointer" item-start (click)="goToProfile(post.postBy)">
+                <img *ngIf="post.userPhoto && pageOwner !== post.postBy" src="{{ post.userPhoto }}">
+                <img *ngIf="pageOwner === post.postBy && pagePic" src="{{ pagePic }}">
+                <img *ngIf="pageOwner === post.postBy && !pagePic" src="assets/imgs/buddy.png">
+                <!-- <img *ngIf="!post.userPhoto && pageOwner !== post.postBy" src="assets/imgs/buddy.png"> -->
+            </ion-avatar>
+
+            <ion-col>
+                <p class="post-author" (click)="viewPost(post.uid)" *ngIf="pageOwner === post.postBy">
+                    {{ pageName }}
+                </p>
+                <p class="post-author" (click)="viewPost(post.uid)" *ngIf="pageOwner !== post.postBy">
+                    {{ post.user }}
+                    <ion-icon ios="ios-play" md="md-play"></ion-icon>
+                    {{ pageName }}
+                    <!-- <br/>
+                      <span *ngIf="post.postOwner" style="color: #999">Shared
+                          <b style="color:gray">{{post.postOwner}}</b> post
+                      </span> -->
+                </p>
+
+                <ion-row>
+                    <ion-note>{{ getDate(post.createdAt) }}</ion-note>
+                    <ion-icon class="globe-icon" name="md-globe"></ion-icon>
+                </ion-row>
+            </ion-col>
+
+            <button *ngIf="account.uid === post.postBy" class="more-button" ion-button clear icon-only item-end (click)="presentPostActionSheet(post)">
+                <ion-icon name="ios-more"></ion-icon>
+            </button>
+        </ion-item>
+
+        <ion-card-content>
+            <div>
+                <span *ngFor="let text of createStrArray(post.text)">
+                    <br *ngIf="text === 'VK_RETURN'" /> {{text.substring(0,1)==="#" || text.substring(0,1)==="@" || isURL(text) || text === 'VK_RETURN'? "":
+                    " " +text}}
+                    <a (click)="searchByTag(text)" *ngIf="text.substring(0,1)==='#'" id="hashtagevt" class="hashtagevt">{{' ' +text}}</a>
+                    <a (click)="openProfileByQuote(text)" *ngIf="text.substring(0,1)==='@'" id="hashtagevt" class="hashtagevt">{{' ' +text}}</a>
+                    <a (click)="openBrowser(text)" *ngIf="isURL(text)">{{' ' +text}}</a>
+                </span>
+            </div>
+            <div *ngIf="post.photoURL">
+                <img class="post-img" [src]="post.photoURL" />
+            </div>
+            <div class="video-paused " *ngIf="post.videoURL">
+                <div>
+                    <video #video width="100%" class="post-img" [src]="post.videoURL" poster="assets/imgs/poster.png" poster="" controls (play)="play(post.uid)"
+                        (pause)="addView(post.uid)" (ended)="addView(post.uid)"></video>
+                    <p *ngIf="post['views'] && post.views > 0">{{post.views > 1? post.views+ ' views': post.views+ ' view'}}</p>
+                </div>
+            </div>
+
+        </ion-card-content>
+
+        <ion-row style="margin-top: 10px;">
+            <ion-col col-4>
+                <ion-row (click)="goToReactions(post)">
+                    <ion-avatar class="facebook-reaction-icon" *ngIf="isLike(post,'like')">
+                        <img src="assets/imgs/newsfeed/facebook-like.png">
+                    </ion-avatar>
+
+                    <ion-avatar class="facebook-reaction-icon" *ngIf="isLike(post,'love')">
+                        <img src="assets/imgs/newsfeed/facebook-love.png">
+                    </ion-avatar>
+
+                    <ion-avatar class="facebook-reaction-icon" *ngIf="isLike(post,'laugh')">
+                        <img src="assets/imgs/newsfeed/facebook-laugh.png">
+                    </ion-avatar>
+
+                    <ion-avatar class="facebook-reaction-icon" *ngIf="isLike(post,'angry')">
+                        <img src="assets/imgs/newsfeed/facebook-angry.png">
+                    </ion-avatar>
+
+                    <ion-avatar class="facebook-reaction-icon" *ngIf="isLike(post,'sad')">
+                        <img src="assets/imgs/newsfeed/facebook-sad.png">
+                    </ion-avatar>
+
+                    <ion-avatar class="facebook-reaction-icon" *ngIf="isLike(post,'shock')">
+                        <img src="assets/imgs/newsfeed/facebook-shock.png">
+                    </ion-avatar>
+
+                    <p class="reaction-count" *ngIf="post.likes && post.likes.length > 0">{{ post.likes.length }}</p>
+                </ion-row>
+            </ion-col>
+
+            <ion-col col-8 text-end>
+                <p (click)="showPostComments(post)">{{countEv(post.comments)}} Comments • {{countEv(post.shares) }} Shares</p>
+            </ion-col>
+        </ion-row>
+
+        <ion-row class="like-commment-share-row">
+            <ion-col center text-center>
+                <button class="like-button" *ngIf="!likeState(post.likes)" ion-button icon-only clear (click)="like(post.uid)" (press)="showReactionsPopOver($event,post)">
+                    <ion-icon name="ios-thumbs-up-outline"></ion-icon>
+                    <p>Like</p>
+                </button>
+                <button class="like-button" *ngIf="likeState(post.likes)" ion-button icon-only clear (click)="dislike(post.uid)">
+                    <ion-icon *ngIf="likeState(post.likes)" name="ios-thumbs-up"></ion-icon>
+                    <p>Liked</p>
+                </button>
+            </ion-col>
+
+            <ion-col center text-center>
+                <button ion-button icon-only clear (click)="showPostComments(post)">
+                    <ion-icon name="ios-text-outline"></ion-icon>
+                    <p>Comment</p>
+                </button>
+            </ion-col>
+
+            <ion-col center text-center>
+                <button ion-button icon-only clear (click)="sharePost(post)">
+                    <ion-icon name="ios-undo-outline"></ion-icon>
+                    <p>Share</p>
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+</ion-list>

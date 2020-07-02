@@ -1,0 +1,122 @@
+<!--
+  Generated template for the PageFormPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-toolbar>
+    <button (click)="close()" ion-button icon-only menuToggle>
+      <ion-icon name="md-arrow-round-back"></ion-icon>
+    </button>
+
+    <ion-title>
+      Create Your Page
+    </ion-title>
+
+    <ion-buttons end>
+      <button *ngIf="step > 2" (click)="createPage()" ion-button>
+        Skip
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <div *ngIf="step === 1" class="step1-div" padding>
+    <h3>
+      Connect with your audience on Facebook
+    </h3>
+    <div class="text">
+      Businesses, brands and orginization can create a free Page in just a few steps
+    </div>
+    <img src="assets/imgs/connect-with-your-audience.png" />
+    <button ion-button block (click)="step = step + 1">GET STARTED</button>
+  </div>
+
+  <div *ngIf="step === 2" class="step2-div">
+    <img src="assets/imgs/Name-your-page.png" />
+    <div padding text-center>
+      <h3> Name your Page </h3>
+      <div>
+        Choose a name that reflects what your Page is about
+      </div>
+      <ion-item>
+        <ion-input placeholder="Page Name" [(ngModel)]="data.pageName" type="text"></ion-input>
+      </ion-item>
+      <button [disabled]="!data.pageName" ion-button block (click)="step = step + 1">NEXT</button>
+    </div>
+  </div>
+
+  <div *ngIf="step === 3" class="step3-div" text-center>
+    <img src="assets/imgs/add-your-website.png" style="max-width: 75%" />
+    <div padding text-center>
+      <div>
+        Send people to your website from your Page
+      </div>
+      <ion-item>
+        <ion-input placeholder="http://" [(ngModel)]="data.website" type="text"></ion-input>
+      </ion-item>
+      <p>You can skip this step if you dont have a website</p>
+      <button ion-button block (click)="createPage()">NEXT</button>
+    </div>
+  </div>
+
+  <div *ngIf="step === 4" class="step4-div">
+    <img *ngIf="!data.coverPhotoURL" src="assets/imgs/Blue-BG.png" style="object-fit: cover" />
+    <img *ngIf="data.coverPhotoURL" src="{{ data.coverPhotoURL }}" style="object-fit: cover" />
+    <div padding text-center>
+      <ion-list>
+        <ion-item>
+          <ion-thumbnail item-start>
+            <img *ngIf="!data.photoURL" src="assets/imgs/Blue-BG.png" width="70" height="70">
+            <img *ngIf="data.photoURL" src="{{ data.photoURL }}" width="70" height="70">
+          </ion-thumbnail>
+          <h2>{{ data.pageName }}</h2>
+        </ion-item>
+      </ion-list>
+      <div>
+        Pages with profile pictures show up higher in search results
+      </div>
+
+      <button ion-button block (click)="choosePagePicture()" outline>ADD A PROFILE PICTURE</button>
+
+      <p>A square photo or logo works well here</p>
+
+      <button ion-button block (click)="createPage()">NEXT</button>
+    </div>
+  </div>
+
+
+
+  <div *ngIf="step === 5" class="step5-div">
+    <img *ngIf="!data.coverPhotoURL" src="assets/imgs/Blue-BG.png" style="object-fit: cover" />
+    <img *ngIf="data.coverPhotoURL" src="{{ data.coverPhotoURL }}" style="object-fit: cover" />
+    <div padding text-center>
+      <ion-list>
+        <ion-item>
+          <ion-thumbnail item-start>
+            <img *ngIf="!data.photoURL" src="assets/imgs/Blue-BG.png" width="70" height="70">
+            <img *ngIf="data.photoURL" src="{{ data.photoURL }}" width="70" height="70">
+          </ion-thumbnail>
+          <h2>{{ data.pageName }}</h2>
+        </ion-item>
+      </ion-list>
+      <div>
+        Pages with cover pictures show up higher in search results
+      </div>
+
+      <button ion-button block (click)="choosePageCoverPicture()" outline>ADD A COVER PICTURE</button>
+
+      <p>High resolution horizontal images work well here</p>
+
+      <button ion-button block (click)="createPage()">Create Page</button>
+    </div>
+  </div>
+
+
+</ion-content>

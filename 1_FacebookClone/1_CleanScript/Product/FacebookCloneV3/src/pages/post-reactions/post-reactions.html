@@ -1,0 +1,157 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>People who reacted</ion-title>
+
+    <ion-buttons right>
+      <button ion-button icon-only clear>
+        <ion-icon name="md-search"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content text-center padding>
+  <div padding>
+    <ion-segment [(ngModel)]="reactionsSegment">
+      <ion-segment-button value="like">
+        <ion-avatar class="facebook-reaction-icon">
+          <img src="assets/imgs/newsfeed/facebook-like.png">
+        </ion-avatar>
+        <span *ngIf="likeReactions.length > 0"> {{ likeReactions.length }} </span>
+      </ion-segment-button>
+
+      <ion-segment-button value="love">
+        <ion-avatar class="facebook-reaction-icon">
+          <img src="assets/imgs/newsfeed/facebook-love.png">
+        </ion-avatar>
+        <span *ngIf="loveReactions.length > 0"> {{ loveReactions.length }} </span>
+      </ion-segment-button>
+
+      <ion-segment-button value="laugh">
+        <ion-avatar class="facebook-reaction-icon">
+          <img src="assets/imgs/newsfeed/facebook-laugh.png">
+        </ion-avatar>
+        <span *ngIf="laughReactions.length > 0"> {{ laughReactions.length }} </span>
+      </ion-segment-button>
+
+      <ion-segment-button value="sad">
+        <ion-avatar class="facebook-reaction-icon">
+          <img src="assets/imgs/newsfeed/facebook-sad.png">
+        </ion-avatar>
+        <span *ngIf="sadReactions.length > 0"> {{ sadReactions.length }} </span>
+      </ion-segment-button>
+
+      <ion-segment-button value="shock">
+        <ion-avatar class="facebook-reaction-icon">
+          <img src="assets/imgs/newsfeed/facebook-shock.png">
+        </ion-avatar>
+        <span *ngIf="shockReactions.length > 0"> {{ shockReactions.length }} </span>
+      </ion-segment-button>
+
+      <ion-segment-button value="angry">
+        <ion-avatar class="facebook-reaction-icon">
+          <img src="assets/imgs/newsfeed/facebook-angry.png">
+        </ion-avatar>
+        <span *ngIf="angryReactions.length > 0"> {{ angryReactions.length }} </span>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="reactionsSegment" *ngIf="account">
+    <div *ngSwitchCase="'like'">
+      <ion-list>
+        <ion-item *ngFor="let reaction of likeReactions">
+          <ion-avatar item-start>
+            <img *ngIf="reaction.photoURL" src="{{reaction.photoURL}}">
+            <img *ngIf="!reaction.photoURL" src="assets/imgs/buddy.png">
+            <img class="reaction" src="assets/imgs/newsfeed/facebook-like.png">
+          </ion-avatar>
+
+          <p>{{reaction.name}}</p>
+
+          <!-- <button ion-button item-end *ngIf="isFriend(reaction)">Add Friend</button> -->
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div *ngSwitchCase="'love'">
+      <ion-list>
+        <ion-item *ngFor="let reaction of loveReactions">
+          <ion-avatar item-start>
+            <img *ngIf="reaction.photoURL" src="{{reaction.photoURL}}">
+            <img *ngIf="!reaction.photoURL" src="assets/imgs/buddy.png">
+            <img class="reaction" src="assets/imgs/newsfeed/facebook-love.png">
+          </ion-avatar>
+
+          <p>{{reaction.name}}</p>
+
+          <!-- <button ion-button item-end *ngIf="isFriend(reaction)">Add Friend</button> -->
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div *ngSwitchCase="'laugh'">
+      <ion-list>
+        <ion-item *ngFor="let reaction of laughReactions">
+          <ion-avatar item-start>
+            <img *ngIf="reaction.photoURL" src="{{reaction.photoURL}}">
+            <img *ngIf="!reaction.photoURL" src="assets/imgs/buddy.png">
+            <img class="reaction" src="assets/imgs/newsfeed/facebook-laugh.png">
+          </ion-avatar>
+
+          <p>{{reaction.name}}</p>
+
+          <!-- <button ion-button item-end *ngIf="isFriend(reaction)">Add Friend</button> -->
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div *ngSwitchCase="'sad'">
+      <ion-list>
+        <ion-item *ngFor="let reaction of sadReactions">
+          <ion-avatar item-start>
+            <img *ngIf="reaction.photoURL" src="{{reaction.photoURL}}">
+            <img *ngIf="!reaction.photoURL" src="assets/imgs/buddy.png">
+            <img class="reaction" src="assets/imgs/newsfeed/facebook-sad.png">
+          </ion-avatar>
+
+          <p>{{reaction.name}}</p>
+
+          <!-- <button ion-button item-end *ngIf="isFriend(reaction)">Add Friend</button> -->
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div *ngSwitchCase="'shock'">
+      <ion-list>
+        <ion-item *ngFor="let reaction of shockReactions">
+          <ion-avatar item-start>
+            <img *ngIf="reaction.photoURL" src="{{reaction.photoURL}}">
+            <img *ngIf="!reaction.photoURL" src="assets/imgs/buddy.png">
+            <img class="reaction" src="assets/imgs/newsfeed/facebook-shock.png">
+          </ion-avatar>
+
+          <p>{{reaction.name}}</p>
+
+          <!-- <button ion-button item-end *ngIf="isFriend(reaction)">Add Friend</button> -->
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div *ngSwitchCase="'angry'">
+      <ion-list>
+        <ion-item *ngFor="let reaction of angryReactions">
+          <ion-avatar item-start>
+            <img *ngIf="reaction.photoURL" src="{{reaction.photoURL}}">
+            <img *ngIf="!reaction.photoURL" src="assets/imgs/buddy.png">
+            <img class="reaction" src="assets/imgs/newsfeed/facebook-angry.png">
+          </ion-avatar>
+
+          <p>{{reaction.name}}</p>
+
+          <!-- <button ion-button item-end *ngIf="isFriend(reaction)">Add Friend</button> -->
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

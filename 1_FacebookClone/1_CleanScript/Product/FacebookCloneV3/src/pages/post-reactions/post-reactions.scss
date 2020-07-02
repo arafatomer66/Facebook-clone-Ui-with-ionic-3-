@@ -1,0 +1,43 @@
+page-post-reactions {
+    .toolbar-title {
+        color: white;
+    }
+
+    ion-buttons {
+        ion-icon {
+            color: white;
+        }
+    }
+
+    .content {
+        .facebook-reaction-icon {
+            max-height: 20px;
+            max-width: 20px;
+        }
+
+        ion-segment-button {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            ion-avatar {
+                margin-left: 5px;
+            }
+            span{
+                margin-left: 2px
+            }
+        }
+
+        ion-list {
+            ion-item {
+                ion-avatar {
+                    .reaction {
+                        margin-top: -20px;
+                        margin-left: 25px;
+                        max-height: 20px;
+                        max-width: 20px;
+                    }
+                }
+            }
+        }
+    }
+}

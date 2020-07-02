@@ -1,0 +1,73 @@
+<ion-header [scrollingHeader]='content'>
+	<search-header></search-header>
+</ion-header>
+
+<ion-content padding>
+	<ion-fab right bottom>
+		<button ion-fab>
+			<ion-icon name="md-person-add"></ion-icon>
+		</button>
+
+		<ion-fab-list side="top">
+			<button ion-fab (click)="gotoUers('allfriends')">
+				<ion-icon name="ios-person-outline"></ion-icon>
+				<ion-label>See All Friends</ion-label>
+			</button>
+
+			<button ion-fab (click)="gotoUers('allUsers')">
+				<ion-icon name="md-search"></ion-icon>
+				<ion-label>Search for New Friends</ion-label>
+			</button>
+		</ion-fab-list>
+	</ion-fab>
+
+	<ion-card>
+		<ion-row>
+			<p class="item-title">FRIEND REQUESTS</p>
+		</ion-row>
+
+		<ion-row>
+			<ion-col text-center *ngIf="friendRequests.length === 0">
+				<p>No New Requests</p>
+			</ion-col>
+		</ion-row>
+		<ion-list>
+			<ion-item *ngFor="let friendRequest of friendRequests">
+				<ion-thumbnail item-start (click)="goToProfile(friendRequest.uid)">
+					<img *ngIf="friendRequest.picture" src="{{ friendRequest.picture }}">
+					<img *ngIf="!friendRequest.picture" src="assets/imgs/buddy.png">
+				</ion-thumbnail>
+
+				<h2>{{ friendRequest.name }}</h2>
+
+				<ion-col>
+					<button class="add-friend-button" ion-button clear (click)="acceptReq(friendRequest)">ADD
+						FRIEND</button>
+					<button class="remove-friend-button" ion-button outline
+						(click)="removeReq(friendRequest)">REMOVE</button>
+				</ion-col>
+			</ion-item>
+		</ion-list>
+	</ion-card>
+	<ion-card>
+		<ion-list>
+			<ion-item *ngFor="let searchUser of searchUserList">
+				<ion-thumbnail item-start (click)="goToProfile(searchUser.uid)">
+					<img *ngIf="searchUser.photoURL" src="{{ searchUser.photoURL }}">
+					<img *ngIf="!searchUser.photoURL" src="assets/imgs/buddy.png" />
+				</ion-thumbnail>
+				<h2>{{ searchUser.name }}</h2>
+				<ion-col>
+					<button class="add-friend-button" *ngIf="!isReqSend(searchUser) && !isFriend(searchUser)"
+						(click)="sendReq(searchUser)" ion-button clear>ADD FRIEND</button>
+					<button color="light" class="sended-req" *ngIf="isReqSend(searchUser) && !isFriend(searchUser)"
+						ion-button>REQUEST SEND</button>
+					<button class="add-friend-button" *ngIf="isFriend(searchUser)" (click)="removeFriend(searchUser)"
+						ion-button clear>UNFRIEND</button>
+					<button class="remove-friend-button" (click)="removeFromSearch(searchUser)" ion-button
+						outline>REMOVE</button>
+				</ion-col>
+			</ion-item>
+		</ion-list>
+	</ion-card>
+</ion-content>

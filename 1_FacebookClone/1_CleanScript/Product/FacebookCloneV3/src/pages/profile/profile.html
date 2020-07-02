@@ -1,0 +1,209 @@
+<ion-header>
+	<ion-navbar>
+		<div (click)="gotoSearch()">
+			<ion-searchbar [disabled] placeholder="Search for posts, photos, etc..."></ion-searchbar>
+		</div>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding *ngIf="account && currentUser" class="has-header">
+	<div class="profile-picture-container">
+		<div>
+			<img *ngIf="account?.coverPhotoURL" class="cover-img" src="{{ account?.coverPhotoURL }}">
+			<img *ngIf="!account?.coverPhotoURL" class="cover-img" style="height: 170px"
+				src="assets/imgs/profile/cover-photo.png">
+			<p class="photo-button" *ngIf="currentUser?.uid === account?.uid && !account?.coverPhotoURL"
+				(click)="changeCoverPhoto()">
+				<ion-icon name="md-camera"></ion-icon> Add Cover Photo
+			</p>
+		</div>
+
+		<div text-center style="position: relative">
+			<img class="profile-picture" *ngIf="account?.photoURL" src="{{ account?.photoURL }}">
+			<img class="profile-picture" *ngIf="!account?.photoURL" src="assets/imgs/buddy.png">
+			<p class="photo-button" style="top: 10px" *ngIf="currentUser?.uid === account?.uid && !account?.photoURL"
+				(click)="changeProfilePhoto()">
+				<ion-icon name="md-camera"></ion-icon> Photo
+			</p>
+		</div>
+	</div>
+
+	<ion-card class="profile-details-card">
+		<ion-col text-center>
+			<p class="username">{{ account.name }}</p>
+		</ion-col>
+
+		<ion-row style="margin-top: -20px;" *ngIf="currentUser?.uid !== account?.uid">
+			<ion-col text-center *ngIf="isFriend()">
+				<button ion-button icon-only clear (click)="removeFriend()">
+					<ion-icon name="md-person"></ion-icon>
+				</button>
+				<p>UnFriend</p>
+			</ion-col>
+
+			<ion-col text-center *ngIf="isReqSend() && !isFriend()">
+				<button ion-button icon-only clear (click)="sendReq()">
+					<ion-icon name="person-add"></ion-icon>
+				</button>
+				<p>Add Friend</p>
+			</ion-col>
+
+			<ion-col text-center *ngIf="isReqSend() && !isFriend()">
+				<button ion-button icon-only clear>
+					<ion-icon name="ios-checkmark-outline"></ion-icon>
+				</button>
+				<p>Request Sent</p>
+			</ion-col>
+
+
+
+			<ion-col text-center (click)="messageUser()">
+				<button ion-button icon-only clear>
+					<ion-icon name="ios-chatbubbles-outline"></ion-icon>
+				</button>
+				<p>Message</p>
+			</ion-col>
+
+
+		</ion-row>
+
+		<ion-item style="padding: 10px;height: 50px" *ngIf="account?.education">
+			<ion-icon name="ios-school-outline" item-start></ion-icon>
+			<p>Studied at
+				<strong>{{ this.account?.education }}</strong>
+			</p>
+		</ion-item>
+
+		<ion-item style="padding: 10px;height: 50px" *ngIf="account?.workPlace">
+			<ion-icon name="ios-briefcase-outline" item-start></ion-icon>
+			<p>Works
+				<strong>{{ this.account?.workPlace }}</strong>
+			</p>
+		</ion-item>
+
+		<ion-item style="padding: 10px;height: 50px" *ngIf="account?.hometown">
+			<ion-icon name="ios-home-outline" item-start></ion-icon>
+			<p>Lives in
+				<strong>{{ this.account?.hometown }}</strong>
+			</p>
+		</ion-item>
+
+		<ion-item style="padding: 10px;height: 50px" *ngIf="account?.hometown">
+			<ion-icon name="ios-pin-outline" item-start></ion-icon>
+			<p>From
+				<strong>{{ this.account?.hometown }}</strong>
+			</p>
+		</ion-item>
+
+		<ion-item style="padding: 10px;height: 50px" *ngIf="account?.relationshipStatus">
+			<ion-icon name="ios-heart-outline" item-start></ion-icon>
+			<p>Relationship Status
+				<strong>{{ this.account?.relationshipStatus }}</strong>
+			</p>
+		</ion-item>
+
+
+		<div style="margin: 15px" *ngIf="currentUser?.uid === account?.uid">
+			<button ion-button block outline icon-start class="add-buttons" (click)="addDetails()">
+				<ion-icon name="add"></ion-icon>
+				ADD DETAILS ABOUT YOU
+			</button>
+
+		</div>
+
+
+		<ion-row>
+			<ion-col text-center>
+				<button ion-button icon-only clear>ABOUT</button>
+			</ion-col>
+
+			<ion-col text-center>
+				<button ion-button icon-only clear>PHOTOS</button>
+			</ion-col>
+
+			<ion-col text-center>
+				<button ion-button icon-only clear>FRIENDS</button>
+			</ion-col>
+		</ion-row>
+	</ion-card>
+
+	<ion-card class="write-post-card">
+		<ion-item (click)="addPost()">
+			<ion-avatar item-start>
+				<img *ngIf="account?.photoURL" src="{{ account?.photoURL }}">
+				<img *ngIf="!account?.photoURL" src="assets/imgs/buddy.png">
+			</ion-avatar>
+
+			<p>{{ placeholder }}</p>
+		</ion-item>
+
+		<ion-row>
+			<ion-col text-center>
+				<button ion-button clear>
+					<ion-icon name="md-create" item-start></ion-icon>
+					<p>TEXT</p>
+				</button>
+			</ion-col>
+
+			<ion-col text-center>
+				<button ion-button clear>
+					<ion-icon name="md-images" item-start></ion-icon>
+					<p>PHOTOS</p>
+				</button>
+			</ion-col>
+		</ion-row>
+	</ion-card>
+
+	<ion-card class="photos-card">
+		<ion-item>
+			<ion-icon class="card-icon" name="md-images" item-start></ion-icon>
+			<p class="card-title">Photos</p>
+		</ion-item>
+		<ion-row>
+			<ion-col *ngFor="let photo of photos" style="width: 30%;">
+				<img class="top-picture" src="{{ photo }}">
+			</ion-col>
+		</ion-row>
+
+		<ion-row *ngIf="photos.length > 3">
+			<ion-col text-center>
+				<button class="card-footer" ion-button clear>
+					<p>See All Photos</p>
+					<ion-icon name="ios-arrow-forward" item-start></ion-icon>
+				</button>
+			</ion-col>
+		</ion-row>
+	</ion-card>
+
+	<ion-card class="friends-card">
+		<ion-item>
+			<ion-icon class="card-icon" name="md-people" item-start></ion-icon>
+			<p class="card-title">Friends</p>
+		</ion-item>
+
+		<ion-row>
+			<ion-col *ngFor="let friend of friends" style="max-width: 32%; margin: 0px 5px">
+				<img *ngIf="friend?.photoURL" style="display: inline;" src="{{ friend?.photoURL }}"
+					(click)="goToProfile(friend.uid)">
+				<img *ngIf="!friend?.photoURL" style="display: inline;" src="assets/imgs/buddy.png"
+					(click)="goToProfile(friend.uid)">
+				<p class="friend-name">{{ friend.name }}</p>
+			</ion-col>
+		</ion-row>
+
+		<ion-row>
+			<ion-col text-center>
+				<button class="card-footer" ion-button clear *ngIf="friends.length > 3">
+					<p>See All Friends</p>
+					<ion-icon name="ios-arrow-forward" item-start></ion-icon>
+				</button>
+			</ion-col>
+		</ion-row>
+	</ion-card>
+
+	<ion-card class="posts-card">
+		<p class="card-title">Posts</p>
+	</ion-card>
+
+	<timeline [timeline]="timeline"></timeline>
+</ion-content>

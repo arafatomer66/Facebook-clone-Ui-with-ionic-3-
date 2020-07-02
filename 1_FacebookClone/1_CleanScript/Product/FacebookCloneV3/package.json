@@ -1,0 +1,104 @@
+{
+	"name": "myApp",
+	"version": "0.0.1",
+	"author": "Ionic Framework",
+	"homepage": "http://ionicframework.com/",
+	"private": true,
+	"scripts": {
+		"start": "ionic-app-scripts serve",
+		"clean": "ionic-app-scripts clean",
+		"build": "ionic-app-scripts build",
+		"lint": "ionic-app-scripts lint",
+		"android": "sudo ionic cordova run android",
+		"android-emulate-l": "sudo ionic cordova emulate android -l",
+		"showplugins": "sudo ionic cordova plugin ls",
+		"android-device-l": "sudo ionic cordova run android -l --device"
+	},
+	"dependencies": {
+		"@angular/animations": "5.2.11",
+		"@angular/common": "5.2.11",
+		"@angular/compiler": "5.2.11",
+		"@angular/compiler-cli": "5.2.11",
+		"@angular/core": "5.2.11",
+		"@angular/forms": "5.2.11",
+		"@angular/platform-browser": "5.2.11",
+		"@angular/platform-browser-dynamic": "5.2.11",
+		"@ionic-native/base64": "^4.7.0",
+		"@ionic-native/camera": "^4.7.0",
+		"@ionic-native/core": "^4.20.0",
+		"@ionic-native/file-path": "^4.8.0",
+		"@ionic-native/firebase": "^5.22.0",
+		"@ionic-native/geolocation": "^4.20.0",
+		"@ionic-native/in-app-browser": "^4.7.0",
+		"@ionic-native/media-capture": "^4.7.0",
+		"@ionic-native/native-geocoder": "^4.20.0",
+		"@ionic-native/splash-screen": "4.20.0",
+		"@ionic-native/status-bar": "4.20.0",
+		"@ionic/storage": "2.2.0",
+		"angularfire2": "^5.0.0-rc.4",
+		"cordova-android": "^8.1.0",
+		"cordova-android-support-gradle-release": "^3.0.1",
+		"cordova-plugin-androidx": "^1.0.2",
+		"cordova-plugin-androidx-adapter": "^1.1.0",
+		"cordova-plugin-camera": "^4.1.0",
+		"cordova-plugin-device": "^2.0.2",
+		"cordova-plugin-file": "^6.0.2",
+		"cordova-plugin-filepath": "^1.5.7",
+		"cordova-plugin-firebasex": "^8.1.1",
+		"cordova-plugin-geolocation": "^4.0.2",
+		"cordova-plugin-ionic-keyboard": "^2.2.0",
+		"cordova-plugin-ionic-webview": "^4.1.3",
+		"cordova-plugin-nativegeocoder": "^3.2.2",
+		"cordova-plugin-splashscreen": "^5.0.2",
+		"cordova-plugin-whitelist": "^1.3.3",
+		"firebase": "^4.12.1",
+		"firebase-admin": "^7.4.0",
+		"grpc": "^1.24.2",
+		"ionic-angular": "3.9.9",
+		"ionic-scrolling-header": "^0.2.3",
+		"ionicons": "3.0.0",
+		"moment": "^2.22.1",
+		"promise-polyfill": "^8.1.3",
+		"rxjs": "^6.0.0",
+		"rxjs-compat": "^6.2.2",
+		"sw-toolbox": "3.6.0",
+		"zone.js": "0.8.29"
+	},
+	"devDependencies": {
+		"@ionic/app-scripts": "3.2.4",
+		"@types/node": "^13.7.7",
+		"cordova-plugin-statusbar": "^2.4.2",
+		"typescript": "^2.6.2"
+	},
+	"description": "An Ionic project",
+	"cordova": {
+		"plugins": {
+			"cordova-plugin-whitelist": {},
+			"cordova-plugin-device": {},
+			"cordova-plugin-splashscreen": {},
+			"cordova-plugin-ionic-webview": {
+				"ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
+			},
+			"cordova-plugin-ionic-keyboard": {},
+			"cordova-plugin-camera": {
+				"ANDROID_SUPPORT_V4_VERSION": "27.+"
+			},
+			"cordova-plugin-nativegeocoder": {},
+			"cordova-plugin-inappbrowser": {},
+			"cordova-plugin-file": {},
+			"cordova-plugin-media-capture": {},
+			"com-badrit-base64": {},
+			"cordova-plugin-filepath": {},
+			"cordova-plugin-statusbar": {},
+			"cordova-android-support-gradle-release": {
+				"ANDROID_SUPPORT_VERSION": "27.+"
+			},
+			"cordova-plugin-firebasex": {},
+			"cordova-plugin-geolocation": {}
+		},
+		"platforms": [
+			"browser",
+			"android"
+		]
+	}
+}

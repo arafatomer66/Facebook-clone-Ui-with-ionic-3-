@@ -1,0 +1,17 @@
+<ion-navbar>
+  <ion-buttons left>
+    <button ion-button icon-only (click)="openCamera()">
+      <ion-icon name="md-camera"></ion-icon>
+    </button>
+  </ion-buttons>
+  <div (click)="gotoSearch()">
+    <ion-searchbar [disabled]></ion-searchbar>
+  </div>
+
+  <ion-buttons right>
+    <button id="cart-btn" ion-button icon-only (click)="gotoMessages()">
+      <ion-icon name="ios-chatbubbles"></ion-icon>
+      <ion-badge *ngIf="totalUnreadChats > 0" id="cart-badge">{{ totalUnreadChats }}</ion-badge>
+    </button>
+  </ion-buttons>
+</ion-navbar>

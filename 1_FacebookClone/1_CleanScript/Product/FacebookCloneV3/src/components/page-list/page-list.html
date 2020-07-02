@@ -1,0 +1,17 @@
+<ion-list>
+	<ion-item *ngFor="let page of pages">
+		<ion-thumbnail item-start (click)="goToPage(page.uid)">
+			<img *ngIf="page.photoURL" src="{{ page.photoURL }}">
+			<img *ngIf="!page.photoURL" src="assets/imgs/Blue-BG.png">
+		</ion-thumbnail>
+
+		<h2>{{ page.pageName }}</h2>
+		<p>{{ page.description }}</p>
+		<button ion-button icon-only clear *ngIf="!isLikedPage(page)" (click)="likePage(page.uid)" item-end>
+			<ion-icon name="ios-thumbs-up-outline"></ion-icon>
+		</button>
+		<button ion-button icon-only clear *ngIf="isLikedPage(page)" (click)="dislikePage(page.uid)" item-end>
+			<ion-icon class="like-button" name="ios-thumbs-up"></ion-icon>
+		</button>
+	</ion-item>
+</ion-list>

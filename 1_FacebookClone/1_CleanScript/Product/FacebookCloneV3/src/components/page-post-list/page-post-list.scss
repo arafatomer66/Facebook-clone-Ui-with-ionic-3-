@@ -1,0 +1,53 @@
+page-post-list {
+    .post-list {
+        .post-author {
+            color: black;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .globe-icon {
+            font-size: 14px;
+            margin-left: 5px;
+            color: gray;
+        }
+
+        ion-note {
+            color: gray;
+        }
+
+        .more-button {
+            color: gray;
+        }
+
+        .facebook-reaction-icon {
+            max-height: 20px;
+            max-width: 20px;
+        }
+
+        .reaction-count {
+            margin-left: 5px;
+        }
+
+        button {
+            ion-icon {
+                padding: 0px;
+            }
+
+            p {
+                margin-left: 5px;
+            }
+        }
+
+        .like-commment-share-row {
+            .like-button {
+                color: map_get($colors, primary);
+            }
+
+            button {
+                color: gray;
+                text-transform: none;
+            }
+        }
+    }
+}

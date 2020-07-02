@@ -1,0 +1,43 @@
+page-notifications {
+    ion-content.content-md[padding] .scroll-content, ion-content.content-ios[padding] .scroll-content {
+        padding: 0px !important;
+    }
+
+    .content {
+        background-color: lightgray;
+        
+        .card-md, .card-ios {
+            margin: 0 0 10px 0;
+            width: 100%;
+        }
+
+        ion-card {
+            .card-title {
+                color: black;
+                font-weight: bold;
+                margin: 5px;
+            }
+
+            ion-item {
+                .notification-icon {
+                    margin-top: -20px;
+                    margin-left: 25px;
+                    max-height: 20px;
+                    max-width: 20px;
+                }
+            
+                .notification {
+                    color: black;
+                }
+            
+                .time {
+                    color: map_get($colors, primary);
+                }
+    
+                ion-icon {
+                    color: gray;
+                }
+            }
+        }        
+    }
+}

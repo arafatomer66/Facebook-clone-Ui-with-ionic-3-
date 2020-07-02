@@ -1,0 +1,33 @@
+<ion-header [scrollingHeader]='content'>
+	<search-header></search-header>
+</ion-header>
+
+<ion-content padding>
+
+
+	<ion-card>
+
+		<ion-list *ngIf="notifications">
+			<ion-item *ngFor="let item  of notifications">
+				<ion-avatar item-start>
+					<img [src]="item.userPhoto? item.userPhoto : 'assets/imgs/buddy.png'" />
+				</ion-avatar>
+
+				<p class="line-break notification" (click)="viewPost(item.postId)">
+					<b *ngIf="item.user">{{item.user}} </b>
+					{{item.event}} a post from
+					<b> {{item.owner}}</b>
+					<br />
+					<ion-note>
+						<span *ngFor="let text of createStrArray(item.text)">
+							<br *ngIf="text === 'VK_RETURN'" /> {{text === 'VK_RETURN'? "": " " +text}}
+						</span>
+					</ion-note>
+				</p>
+				<p class="time">{{getDate(item.createdAt)}}</p>
+
+
+			</ion-item>
+		</ion-list>
+	</ion-card>
+</ion-content>

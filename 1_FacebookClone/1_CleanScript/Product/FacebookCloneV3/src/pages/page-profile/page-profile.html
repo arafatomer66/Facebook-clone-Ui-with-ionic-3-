@@ -1,0 +1,217 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ pageDetails ? pageDetails.pageName : '' }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding *ngIf="pageDetails && currentUser" class="has-header">
+  <div class="profile-picture-container">
+    <div>
+      <img *ngIf="pageDetails.coverPhotoURL" class="cover-img" src="{{ pageDetails.coverPhotoURL }}">
+      <img *ngIf="!pageDetails.coverPhotoURL" class="cover-img" style="height: 170px" src="assets/imgs/Blue-BG.png">
+      <p class="photo-button" *ngIf="pageDetails.ownerId === currentUser.uid && !pageDetails.coverPhotoURL" (click)="changeCoverPhoto()">
+        <ion-icon name="md-camera"></ion-icon> Add Cover Photo
+      </p>
+    </div>
+
+
+    <div text-center style="position: relative">
+      <img class="profile-picture" *ngIf="pageDetails.photoURL" src="{{ pageDetails.photoURL }}">
+      <img class="profile-picture" *ngIf="!pageDetails.photoURL" src="assets/imgs/buddy.png">
+      <p class="photo-button" style="top: 10px" *ngIf="pageDetails.ownerId === currentUser.uid && !pageDetails.photoURL" (click)="changeProfilePhoto()">
+        <ion-icon name="md-camera"></ion-icon> Photo
+      </p>
+    </div>
+  </div>
+
+  <ion-card class="profile-details-card">
+    <ion-col text-center>
+      <p class="username">{{ pageDetails.pageName }}</p>
+      <p class="page-description">{{ pageDetails.description }}</p>
+    </ion-col>
+
+    <ion-row style="margin-top: -20px;">
+      <ion-col text-center *ngIf="!isLikedPage(pageDetails)">
+        <button ion-button clear (click)="likePage(pageDetails.uid)">
+          <ion-icon name="ios-thumbs-up-outline" style="font-size: 2.5rem"></ion-icon>
+          <p style="margin-top: 10px;margin-left: 5px;color: #3b5998">{{ pageDetails && pageDetails.likes && pageDetails.likes.length
+            }}
+          </p>
+        </button>
+        <p>Like</p>
+      </ion-col>
+      <ion-col text-center *ngIf="isLikedPage(pageDetails)">
+        <button ion-button clear (click)="dislikePage(pageDetails.uid)">
+          <ion-icon name="ios-thumbs-up" style="font-size: 2.5rem">
+          </ion-icon>
+          <p style="margin-top: 10px;margin-left: 5px;color: #3b5998">{{ pageDetails && pageDetails.likes && pageDetails.likes.length
+            }}
+          </p>
+        </button>
+        <p style="color: #3b5998">Liked</p>
+      </ion-col>
+
+
+      <ion-col text-center *ngIf="!isLikedPage(pageDetails)">
+        <button ion-button icon-only clear (click)="likePage(pageDetails.uid)">
+          <ion-icon name="ios-add-outline"></ion-icon>
+        </button>
+        <p>Follow</p>
+      </ion-col>
+      <ion-col text-center *ngIf="isLikedPage(pageDetails)">
+        <button ion-button icon-only clear (click)="dislikePage(pageDetails.uid)">
+          <ion-icon style="color: #3b5998;font-size: 3em" name="ios-checkmark-outline"></ion-icon>
+        </button>
+        <p style="color: #3b5998">Following</p>
+      </ion-col>
+
+      <ion-col text-center *ngIf="pageDetails.ownerId === currentUser.uid" (click)="editPage()">
+        <button ion-button icon-only clear>
+          <ion-icon name="md-create"></ion-icon>
+        </button>
+        <p>Edit Page</p>
+      </ion-col>
+
+      <ion-col text-center (click)="addPost()" *ngIf="pageDetails.ownerId === currentUser.uid">
+        <button ion-button icon-only clear>
+          <ion-icon name="ios-create"></ion-icon>
+        </button>
+        <p>Post</p>
+      </ion-col>
+
+
+    </ion-row>
+
+    <ion-item style="padding: 10px;height: 50px" *ngIf="pageDetails.currentCity">
+      <ion-icon style="margin-bottom: 0px" name="ios-home-outline" item-start></ion-icon>
+      <p>Current City
+        <strong>{{ this.pageDetails.currentCity }}</strong>
+      </p>
+    </ion-item>
+
+    <ion-item style="padding: 10px;height: 50px" *ngIf="pageDetails.hometown">
+      <ion-icon style="margin-bottom: 0px" name="ios-home-outline" item-start></ion-icon>
+      <p>From
+        <strong>{{ this.pageDetails.hometown }}</strong>
+      </p>
+    </ion-item>
+
+    <ion-item style="padding: 10px;height: 50px" *ngIf="pageDetails.hometown">
+      <ion-icon style="margin-bottom: 0px" name="ios-home-outline" item-start></ion-icon>
+      <p>Lives in
+        <strong>{{ this.pageDetails.hometown }}</strong>
+      </p>
+    </ion-item>
+
+    <ion-item style="padding: 10px;height: 50px" *ngIf="pageDetails.education">
+      <ion-icon style="margin-bottom: 0px" name="ios-school-outline" item-start></ion-icon>
+      <p>Education
+        <strong>{{ this.pageDetails.education }}</strong>
+      </p>
+    </ion-item>
+
+    <ion-item style="padding: 10px;height: 50px" *ngIf="pageDetails.workPlace">
+      <ion-icon style="margin-bottom: 0px" name="ios-briefcase-outline" item-start></ion-icon>
+      <p>Work Place
+        <strong>{{ this.pageDetails.workPlace }}</strong>
+      </p>
+    </ion-item>
+
+
+    <ion-item style="padding: 10px;height: 50px" *ngIf="pageDetails.website">
+      <ion-icon style="margin-bottom: 0px" name="logo-chrome" item-start></ion-icon>
+      <p>Website
+        <strong (click)="openBrowser(pageDetails.website)">{{ this.pageDetails.website }}</strong>
+      </p>
+    </ion-item>
+
+    <ion-row>
+      <ion-col text-center>
+        <button ion-button icon-only clear>ABOUT</button>
+      </ion-col>
+
+      <ion-col text-center>
+        <button ion-button icon-only clear>PHOTOS</button>
+      </ion-col>
+
+      <!-- <ion-col text-center>
+        <button ion-button icon-only clear>FRIENDS</button>
+      </ion-col> -->
+    </ion-row>
+  </ion-card>
+
+  <ion-card class="write-post-card">
+    <ion-item (click)="addPost()">
+      <ion-avatar item-start>
+        <img *ngIf="pageDetails.photoURL" src="{{ pageDetails.photoURL }}">
+        <img *ngIf="!pageDetails.photoURL" src="assets/imgs/buddy.png">
+      </ion-avatar>
+
+      <span style="color: #999">{{ placeholder }}</span>
+    </ion-item>
+
+    <ion-row>
+      <ion-col text-center>
+        <button ion-button clear>
+          <ion-icon name="md-create" item-start></ion-icon>
+          <p>PHOTOS</p>
+        </button>
+      </ion-col>
+
+      <!-- <ion-col text-center>
+        <button ion-button clear>
+          <ion-icon name="md-images" item-start></ion-icon>
+          <p>FRIENDS</p>
+        </button>
+      </ion-col> -->
+    </ion-row>
+  </ion-card>
+
+  <ion-card class="photos-card">
+    <ion-item>
+      <ion-icon class="card-icon" name="md-images" item-start></ion-icon>
+      <p class="card-title">Photos</p>
+    </ion-item>
+
+    <ion-col *ngFor="let photo of photos">
+      <img class="top-picture" src="{{ photo }}" style="width: 50%;">
+    </ion-col>
+
+    <!-- <ion-col>
+        <img class="top-picture" src="https://res.cloudinary.com/cediim8/image/upload/v1521094006/newsfeed/pexels-photo-414171-min.jpg"
+          style="width: 100%;">
+      </ion-col> -->
+
+    <!-- <ion-row>
+      <ion-col>
+        <img class="bottom-picture" src="https://res.cloudinary.com/cediim8/image/upload/v1521094006/newsfeed/pexels-photo-462867-min.jpg"
+          style="width: 100%;">
+      </ion-col>
+
+      <ion-col>
+        <img class="bottom-picture" src="https://res.cloudinary.com/cediim8/image/upload/v1521094006/newsfeed/pexels-photo-704965-min.jpg"
+          style="width: 100%;">
+      </ion-col>
+
+      <ion-col>
+        <img class="bottom-picture" src="https://res.cloudinary.com/cediim8/image/upload/v1521094006/newsfeed/pexels-photo-736414-min.jpg"
+          style="width: 100%;">
+      </ion-col>
+    </ion-row> -->
+
+    <ion-row *ngIf="photos.length > 4">
+      <ion-col text-center>
+        <button class="card-footer" ion-button clear>
+          <p>See All Photos</p>
+          <ion-icon name="ios-arrow-forward" item-start></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-card class="posts-card">
+    <p class="card-title">Posts</p>
+  </ion-card>
+
+  <page-post-list [timeline]="timeline" [pageName]="pageDetails.pageName" [pageOwner]="pageDetails.ownerId" [pagePic]="pageDetails.photoURL"></page-post-list>
+</ion-content>

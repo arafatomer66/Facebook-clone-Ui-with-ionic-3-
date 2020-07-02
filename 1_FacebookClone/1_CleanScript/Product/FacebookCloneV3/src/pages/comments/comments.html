@@ -1,0 +1,88 @@
+<ion-header>
+	<ion-navbar>
+		<ion-buttons left>
+			<ion-row>
+				<button ion-button icon-only clear (click)="goBack()">
+					<ion-icon name="ios-arrow-back"></ion-icon>
+				</button>
+
+				<ion-row>
+					<button ion-button icon-only clear (click)="goToReactions()">
+						<ion-avatar class="facebook-reaction-icon">
+							<img src="assets/imgs/newsfeed/facebook-like.png">
+						</ion-avatar>
+					</button>
+
+					<button ion-button icon-only clear (click)="goToReactions()">
+						<ion-avatar class="facebook-reaction-icon">
+							<img src="assets/imgs/newsfeed/facebook-love.png">
+						</ion-avatar>
+					</button>
+
+					<button ion-button icon-only clear (click)="goToReactions()">
+						<ion-avatar class="facebook-reaction-icon">
+							<img src="assets/imgs/newsfeed/facebook-laugh.png">
+						</ion-avatar>
+					</button>
+				</ion-row>
+			</ion-row>
+		</ion-buttons>
+
+		<ion-buttons right>
+			<button ion-button icon-only clear *ngIf="!isLiked()" (click)="like()">
+				<ion-icon name="ios-thumbs-up-outline"></ion-icon>
+			</button>
+			<button ion-button icon-only clear *ngIf="isLiked()" (click)="dislike()">
+				<ion-icon class="like-button" name="ios-thumbs-up"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<ion-list no-lines>
+		<ion-item *ngFor="let comment of comments">
+			<ion-row>
+				<ion-col col-2>
+					<ion-avatar>
+						<img *ngIf="comment.photoURL" src="{{comment.photoURL}}">
+						<img *ngIf="!comment.photoURL" src="assets/imgs/buddy.png">
+					</ion-avatar>
+				</ion-col>
+
+				<ion-col col-10>
+					<p class="comment-content line-break">
+						<strong>{{comment.user}}</strong>
+						<br> {{comment.text}}
+					</p>
+
+					<ion-row class="like-reply-row">
+						<ion-item>
+							<ion-row item-start>
+								<p>{{ getDate(comment.createdAt) }}</p>
+
+							</ion-row>
+
+
+						</ion-item>
+					</ion-row>
+
+
+
+
+				</ion-col>
+			</ion-row>
+		</ion-item>
+	</ion-list>
+</ion-content>
+
+<ion-footer>
+	<ion-item>
+		<ion-input [(ngModel)]="text" placeholder="Write a comment..."></ion-input>
+		<div item-end>
+			<button ion-button clear icon-only (click)="postComment()">
+				<ion-icon name="md-send"></ion-icon>
+			</button>
+		</div>
+	</ion-item>
+</ion-footer>

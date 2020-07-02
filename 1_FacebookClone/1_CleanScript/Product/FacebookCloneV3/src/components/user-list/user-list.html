@@ -1,0 +1,21 @@
+<ion-list *ngIf="account">
+  <ion-item *ngFor="let user of users">
+    <ion-thumbnail item-start (click)="goToProfile(user.uid)">
+      <img *ngIf="user.photoURL" src="{{ user.photoURL }}">
+      <img *ngIf="!user.photoURL" src="assets/imgs/buddy.png">
+    </ion-thumbnail>
+
+    <h2>{{ user.name }}</h2>
+    <p>{{user.username}}</p>
+
+    <ion-col *ngIf="account.uid !== user.uid && !chat">
+      <button class="add-friend-button" *ngIf="!isReqSend(user) && !isFriend(user)" (click)="sendReq(user)" ion-button clear>ADD FRIEND</button>
+      <button color="light" class="sended-req" *ngIf="isReqSend(user) && !isFriend(user)" ion-button>REQUEST SEND</button>
+      <button class="add-friend-button" *ngIf="isFriend(user)" (click)="removeFriend(user)" ion-button clear>UNFRIEND</button>
+      <button class="remove-friend-button" (click)="removeFromSearch(user)" ion-button outline>REMOVE</button>
+    </ion-col>
+    <button (click)="startChat(user)" *ngIf="chat" ion-button icon-only clear color="dark" item-end>
+      <ion-icon name="chatbubbles" style="color: #3b5998"></ion-icon>
+    </button>
+  </ion-item>
+</ion-list>

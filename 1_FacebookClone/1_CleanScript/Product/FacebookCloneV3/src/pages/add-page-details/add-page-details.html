@@ -1,0 +1,80 @@
+<!--
+  Generated template for the ProfileAddDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Edit Page</ion-title>
+    <ion-buttons right>
+      <button ion-button (click)="updatePage()">
+        Update
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="content">
+  <div class="profilePic-div">
+    <h3>Profile Picture</h3>
+    <p>Choose a recent photo of yourself. This helps people see that they're getting in touch with the rigth person</p>
+    <div class="img-div" (click)="changeProfilePhoto()">
+      <img *ngIf="!pageDetails.photoURL" src="assets/imgs/profile/profile-placeholder.jpg" />
+      <img *ngIf="pageDetails.photoURL" src="{{ pageDetails.photoURL }}" />
+      <p>
+        <ion-icon name="md-camera"></ion-icon> ADD</p>
+    </div>
+  </div>
+  <div class="coverPic-div">
+    <h3>Cover Picture</h3>
+    <p>Choose a photo to appear at the top of your profile. It could be from a recent trip or something you're proud of.</p>
+    <div class="img-div" (click)="changeCoverPhoto()">
+      <img *ngIf="!pageDetails.coverPhotoURL" src="assets/imgs/Blue-BG.png" />
+      <img *ngIf="pageDetails.coverPhotoURL" src="{{ pageDetails.coverPhotoURL }}" />
+      <p>
+        <ion-icon name="md-camera"></ion-icon> ADD</p>
+    </div>
+  </div>
+
+  <div class="details-div">
+    <h3>Details</h3>
+    <p>Add your details to let people know more about who you are</p>
+    <div>
+      <ion-list>
+        <ion-item (click)="changeCity()">
+          <ion-icon name="ios-home-outline"></ion-icon>
+          <span class="details-text">{{ this.pageDetails.currentCity ? this.pageDetails.currentCity : 'Cuurent City' }}</span>
+        </ion-item>
+        <ion-item (click)="changeWorkPlace()">
+          <ion-icon name="ios-briefcase-outline"></ion-icon>
+          <span class="details-text"> {{ this.pageDetails.workPlace ? this.pageDetails.workPlace : 'Work Place' }}</span>
+        </ion-item>
+        <ion-item (click)="changeEducation()">
+          <ion-icon name="ios-school-outline"></ion-icon>
+          <span class="details-text">{{ this.pageDetails.education ? this.pageDetails.education : 'Education' }} </span>
+        </ion-item>
+        <ion-item (click)="changeHometown()">
+          <ion-icon name="ios-pin-outline"></ion-icon>
+          <span class="details-text">{{ this.pageDetails.hometown ? this.pageDetails.hometown : 'Hometown' }}</span>
+        </ion-item>
+        <ion-item (click)="changeWebsite()">
+          <ion-icon name="logo-chrome"></ion-icon>
+          <span class="details-text"> {{ this.pageDetails.website ? this.pageDetails.website : 'Website' }}</span>
+        </ion-item>
+        <ion-item (click)="customize()">
+          <ion-icon name="ios-home-outline"></ion-icon>
+          <span class="details-text">{{ this.pageDetails.customiseField ? this.pageDetails.customiseField : 'Customise It' }}</span>
+        </ion-item>
+      </ion-list>
+      <div style="margin: 15px">
+        <button ion-button block color="danger" class="add-buttons" (click)="deletePage()">
+          DELETE PAGE</button>
+      </div>
+
+    </div>
+  </div>
+</ion-content>

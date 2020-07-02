@@ -1,0 +1,56 @@
+page-add-page-details {
+    .content{
+        background: lightgray;
+        // opacity: 0.5;
+        .profilePic-div{
+            padding: 10px 15px;
+            background: white;
+            .img-div{
+                position: relative;
+                width: 70%;
+                p{
+                    position: absolute;
+                    float: right;
+                    bottom: 10px;
+                    right: 10px;
+                    font-size: 20px;
+                    margin: 0px;
+                    padding: 10px;
+                    background: grey;
+                    color: white;
+                    opacity: 0.5;
+                    border-radius: 7px;
+                }
+            } 
+        }
+        .coverPic-div{
+            padding: 10px 15px;
+            background: white;
+            margin-top: 10px;
+            .img-div{
+                position: relative;
+                p{
+                    position: absolute;
+                    float: right;
+                    bottom: 10px;
+                    right: 10px;
+                    font-size: 20px;
+                    margin: 0px;
+                    padding: 10px;
+                    background: grey;
+                    color: white;
+                    opacity: 0.5;
+                    border-radius: 7px;
+                }
+            }
+        }
+        .details-div{
+            padding: 10px 15px;
+            background: white;
+            margin-top: 10px;
+            .details-text{
+                margin-left: 10px
+            }
+        }
+    }
+}

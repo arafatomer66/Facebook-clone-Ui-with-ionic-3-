@@ -1,0 +1,71 @@
+<ion-header>
+
+	<ion-navbar>
+		<ion-title>{{ is_likes ? 'Like Pages' : 'Pages' }}</ion-title>
+	</ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="content">
+
+
+	<ion-card class="ownedPages-card">
+		<ion-row class="top-row">
+			<div style="display: flex">
+				<img src="assets/imgs/page-icon.jpg" style="width: 22px;height: 22px">
+				<p class="card-title">Owned Pages</p>
+			</div>
+			<div style="display: flex" (click)="createPage()">
+				<ion-icon name="add" style="font-size: 1.3em;color: #999"></ion-icon>
+				<p class="card-title">Create</p>
+			</div>
+		</ion-row>
+
+		<ion-list>
+			<ion-item *ngFor="let page of ownedPages">
+				<ion-thumbnail item-start (click)="goToPage(page.uid)" style="min-height: 50px;min-width: 50px">
+					<img *ngIf="page.photoURL" src="{{ page.photoURL }}" style="width: 50px;height: 50px">
+					<img *ngIf="!page.photoURL" src="assets/imgs/Blue-BG.png" style="width: 50px;height: 50px">
+				</ion-thumbnail>
+
+				<h2>{{ page.pageName }}</h2>
+			</ion-item>
+		</ion-list>
+		<ion-row>
+			<ion-col text-center>
+				<button class="card-footer" ion-button clear>
+					<p>See All</p>
+				</button>
+			</ion-col>
+		</ion-row>
+	</ion-card>
+
+	<ion-card class="likesPages-card">
+		<ion-row class="top-row">
+			<div style="display: flex">
+				<img src="assets/imgs/settings/like-pages.png" style="width: 22px;height: 22px">
+				<p class="card-title">Liked Pages</p>
+			</div>
+		</ion-row>
+
+		<ion-list>
+			<ion-item *ngFor="let page of likedPages">
+				<ion-thumbnail item-start (click)="goToPage(page.uid)" style="min-height: 50px;min-width: 50px">
+					<img *ngIf="page.photoURL" src="{{ page.photoURL }}" style="width: 50px;height: 50px">
+					<img *ngIf="!page.photoURL" src="assets/imgs/Blue-BG.png" style="width: 50px;height: 50px">
+				</ion-thumbnail>
+
+				<h2>{{ page.pageName }}</h2>
+			</ion-item>
+		</ion-list>
+		<ion-row>
+			<ion-col text-center>
+				<button class="card-footer" ion-button clear>
+					<p>See All</p>
+				</button>
+			</ion-col>
+		</ion-row>
+	</ion-card>
+
+</ion-content>

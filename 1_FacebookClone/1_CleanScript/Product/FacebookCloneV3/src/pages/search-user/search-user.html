@@ -1,0 +1,17 @@
+<ion-header>
+
+  <ion-toolbar>
+    <button (click)="close()" ion-button icon-left menuToggle>
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+
+    <ion-title>
+      {{ title }}
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-searchbar placeholder="Search by name" (ionInput)="search($event)"></ion-searchbar>
+  <user-list [users]="users" [chat]="chat"></user-list>
+</ion-content>

@@ -1,0 +1,82 @@
+<ion-header>
+
+  <ion-toolbar>
+    <button (click)="close()" ion-button icon-only menuToggle>
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+
+    <ion-title>
+      Post
+    </ion-title>
+
+  </ion-toolbar>
+
+</ion-header>
+<ion-content>
+  <timeline class="post" [timeline]="post"></timeline>
+  <ion-list *ngIf="comments" padding>
+    <ion-item *ngFor="let comment of comments">
+      <ion-row>
+        <ion-col col-2>
+          <ion-avatar>
+            <img *ngIf="comment.photoURL" src="{{comment.photoURL}}">
+            <img *ngIf="!comment.photoURL" src="assets/imgs/buddy.png">
+          </ion-avatar>
+        </ion-col>
+
+        <ion-col col-10>
+          <p class="comment-content line-break">
+            <strong>{{comment.user}}</strong>
+            <br> {{comment.text}}
+          </p>
+
+          <ion-row class="like-reply-row">
+            <ion-item>
+              <ion-row item-start>
+                <p>{{ getDate(comment.createdAt) }}</p>
+                <!-- <p>
+                  <strong>Like</strong>
+                </p>
+                <p>
+                  <strong>Reply</strong>
+                </p> -->
+              </ion-row>
+
+              <!-- <ion-badge item-end (click)="goToReactions()">
+                <p>
+                  <ion-row>
+                    <ion-avatar class="facebook-reaction-icon">
+                      <img src="assets/imgs/newsfeed/facebook-like.png">
+                    </ion-avatar>
+
+                    <ion-avatar class="facebook-reaction-icon">
+                      <img src="assets/imgs/newsfeed/facebook-laugh.png">
+                    </ion-avatar>
+                    <p>{{comment.reactionsCount}}</p>
+                  </ion-row>
+                </p>
+              </ion-badge> -->
+            </ion-item>
+          </ion-row>
+
+          <!-- <ion-row class="more-replies-row">
+            <p (click)="goToReplies()">View {{comment.repliesCount}} more replies</p>
+          </ion-row> -->
+
+          <!-- <ion-row class="last-reply-row">
+            <ion-item>
+              <ion-avatar item-start>
+                <img src="{{comment.subReplyProfilePicture}}">
+              </ion-avatar>
+
+              <p item-end>
+                <strong>{{comment.subReplyName}}</strong>
+                {{comment.subReplyContent}}
+              </p>
+            </ion-item>
+          </ion-row> -->
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-list>
+</ion-content>

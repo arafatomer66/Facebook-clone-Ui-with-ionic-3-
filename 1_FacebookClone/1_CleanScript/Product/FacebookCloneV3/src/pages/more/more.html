@@ -1,0 +1,182 @@
+<ion-header [scrollingHeader]='content'>
+	<search-header></search-header>
+</ion-header>
+
+<ion-content padding>
+	<ion-item (click)="goToProfile()">
+		<ion-avatar item-start>
+			<img style="object-fit: cover" *ngIf="account.photoURL" src="{{ account.photoURL }}">
+			<img style="object-fit: cover" *ngIf="!account.photoURL" src="assets/imgs/buddy.png">
+		</ion-avatar>
+
+		<p class="user-name">{{ account.name }}</p>
+		<p class="view-profile">View your profile</p>
+	</ion-item>
+
+	<p class="item-title">Favorites</p>
+
+	<ion-list no-lines>
+		<ion-item (click)="gotoUers('allUsers')">
+			<ion-avatar item-start>
+				<img src="assets/imgs/settings/discover-people.png">
+			</ion-avatar>
+
+			<p>Discover People</p>
+		</ion-item>
+		<ion-item (click)="gotoUers('allfriends')">
+			<ion-avatar item-start>
+				<img src="assets/imgs/settings/friends.png">
+			</ion-avatar>
+
+			<p>Friends</p>
+		</ion-item>
+
+		<ion-item>
+			<!-- because this link is down for now -->
+			<!-- <ion-item (click)="openBrowser('https://socodeur.com/downloads/instagram-clone/')"> -->
+			<ion-avatar item-start>
+				<img src="assets/imgs/settings/instagram.png">
+			</ion-avatar>
+
+			<p>Instagram</p>
+		</ion-item>
+
+
+		<ion-item>
+			<ion-avatar item-start>
+				<img src="assets/imgs/settings/saved.png">
+			</ion-avatar>
+
+			<p>Saved</p>
+
+			<ion-badge item-end>11</ion-badge>
+		</ion-item>
+
+
+	</ion-list>
+
+
+	<ion-list no-lines>
+
+		<ion-item (click)="gotoPagesList(true)">
+			<ion-avatar item-start>
+				<img src="assets/imgs/settings/like-pages.png">
+			</ion-avatar>
+
+			<p>Like Pages</p>
+		</ion-item>
+
+
+		<ion-item (click)="gotoPagesList(false)">
+			<ion-avatar item-start>
+				<img src="assets/imgs/page-icon.jpg">
+			</ion-avatar>
+
+			<p>Pages</p>
+		</ion-item>
+
+
+		<ion-item (click)="gotoUers('allUsers')">
+			<ion-avatar item-start>
+				<img src="assets/imgs/settings/find-friends.png">
+			</ion-avatar>
+
+			<p>Find Friends</p>
+		</ion-item>
+
+
+	</ion-list>
+
+
+
+	<p class="item-title top-border">Feeds</p>
+
+	<ion-list no-lines>
+		<ion-item>
+			<ion-avatar item-start>
+				<img src="assets/imgs/settings/most-recent.png">
+			</ion-avatar>
+
+			<p>Most Recent</p>
+		</ion-item>
+
+
+	</ion-list>
+
+	<p class="item-title top-border">Interests</p>
+
+	<ion-list no-lines>
+		<ion-item>
+			<ion-avatar item-start>
+				<img src="assets/imgs/settings/following.png">
+			</ion-avatar>
+
+			<p>Following</p>
+		</ion-item>
+
+
+	</ion-list>
+
+	<p class="item-title top-border">HELP & SETTINGS</p>
+
+	<ion-list no-lines>
+		<ion-item>
+			<ion-avatar item-start>
+				<img src="assets/imgs/settings/app-settings.png">
+			</ion-avatar>
+			<p>App Settings</p>
+		</ion-item>
+		<ion-item>
+			<ion-avatar item-start>
+				<img src="assets/imgs/settings/account-settings.png">
+			</ion-avatar>
+			<p>Account Settings</p>
+		</ion-item>
+		<ion-item>
+			<ion-avatar item-start>
+				<img src="assets/imgs/settings/help-center.png">
+			</ion-avatar>
+
+			<p>Help Center</p>
+		</ion-item>
+		<ion-item>
+			<ion-avatar item-start>
+				<img src="assets/imgs/settings/terms-policies.png">
+			</ion-avatar>
+
+			<p>Terms and Policies</p>
+		</ion-item>
+
+		<ion-item (click)="mailto()">
+			<ion-avatar item-start>
+				<img src="assets/imgs/settings/report-problem.png">
+			</ion-avatar>
+
+			<p>Report a Problem</p>
+		</ion-item>
+
+		<ion-item>
+			<ion-avatar item-start>
+				<img src="assets/imgs/settings/about.png">
+			</ion-avatar>
+
+			<p>About</p>
+		</ion-item>
+
+		<ion-item>
+			<ion-avatar item-start>
+				<img src="assets/imgs/settings/mobile-data.png">
+			</ion-avatar>
+
+			<p>Mobile Data</p>
+		</ion-item>
+
+		<ion-item (click)='signOut()'>
+			<ion-avatar item-start>
+				<img src="assets/imgs/settings/log-out.png">
+			</ion-avatar>
+
+			<p>Log Out</p>
+		</ion-item>
+	</ion-list>
+</ion-content>

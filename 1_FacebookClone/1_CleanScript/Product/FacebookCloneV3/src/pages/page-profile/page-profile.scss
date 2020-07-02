@@ -1,0 +1,226 @@
+page-page-profile {
+        ion-content.content-md[padding] .scroll-content, ion-content.content-ios[padding] .scroll-content {
+            padding: 0px !important;
+        }
+    
+        .content {
+            background-color: lightgray;
+    
+            .add-buttons{
+                border-radius: 7px;
+                margin: 10px 0px;
+                height: 35px;
+            }
+    
+            .profile-picture-container {
+                background-color: white;
+                .photo-button{
+                    position: absolute;
+                    bottom: 0px;
+                    text-align: center;
+                    -webkit-align-self: center;
+                    -ms-flex-item-align: center;
+                    align-self: center;
+                    top: 27px;
+                    right: 0px;
+                    left: 0px;
+                    height: 30px;
+                    font-size: 20px;
+                    color: black;
+                    opacity: 0.9;
+                    z-index: 10
+                }
+                .cover-img{
+                    height: 170px;
+                    width: 100%;
+                    // object-fit: cover;
+                }
+    
+            }
+    
+            .item-md ion-avatar[item-left], .item-md ion-thumbnail[item-left], .item-md ion-avatar[item-start], .item-md ion-thumbnail[item-start],
+            .item-ios ion-avatar[item-left], .item-ios ion-thumbnail[item-left], .item-ios ion-avatar[item-start], .item-ios ion-thumbnail[item-start] {
+                margin: 0px 4px 0px 8px;
+            }
+    
+            .list-md, .list-ios  {
+                margin: 0px;
+            }
+    
+            .card-md, .card-ios {
+                margin: 10px 0;
+                width: 100%;
+            }
+    
+            .item-md, .item-ios {
+                padding: 0px;
+            }
+    
+            .item-md.item-block .item-inner, .item-ios.item-block .item-inner {
+                margin-left: 7px;
+                padding: 0px;
+            }
+    
+            .label-md, .label-ios {
+                margin: 0px;
+                p{
+                    strong{
+                        margin-left: 20px
+                    }
+                }
+            }
+            
+            .profile-details-card {
+                margin: 0px;
+                margin-top: -50px;
+                .page-description{
+                    margin: 10px;
+                    line-height: 0;
+                    font-size: 1.6rem;
+                    color: gray;
+                }
+            }
+            
+            .profile-picture {
+                border: 3px solid white;
+                margin-top: -50px;
+                max-height: 125px;
+                min-width: 135px;
+                object-fit: cover;
+                background: lightgray
+            }
+    
+            .username {
+                font-size: 24px;
+                padding-top: 35px
+            }
+    
+            .card-title {
+                color: black;
+                font-weight: bold;
+            }
+    
+            .card-footer {
+                p {
+                    text-transform: none;
+                    font-weight: bold;
+                }
+    
+                ion-icon {
+                    margin-left: 10px;
+                    color: map_get($colors, secondary);
+                }
+            }
+    
+            .photos-card {
+                margin: 10px 0;
+    
+                .top-picture {
+                    height: 110px;
+                    width: 100px;
+                }
+    
+                .bottom-picture {
+                    height: 110px;
+                    width: 100px;
+                }
+            }
+    
+            .write-post-card{
+                margin: 10px 0;
+    
+                button {
+                    ion-icon {
+                        color: map_get($colors, secondary);
+                        margin-right: 5px;
+                    }
+                }
+            }
+            
+            .posts-card {
+                margin: 10px 0;
+    
+                p {
+                    margin-left: 10px;
+                }
+            }
+    
+            .friends-card {
+                margin: 10px 0;
+    
+                .friend-name {
+                    font-weight: bold;
+                }
+    
+                .mutual-friends-count {
+                    font-size: 12px;
+                }
+    
+                img {
+                    height: 110px;
+                    width: 100px;
+                }
+            }
+    
+            .post-card {
+                margin: 10px 0;
+            }
+    
+            .card-icon {
+                color: map_get($colors, secondary);
+                margin-left: 10px;
+            }
+    
+            .post-list {
+                .post-author {
+                    color: black;
+                    font-weight: bold;
+                    font-size: 16px;
+                }
+    
+                .globe-icon {
+                    font-size: 14px;
+                    margin-left: 5px;
+                    color: gray;
+                }
+    
+                ion-note {
+                    color: gray;
+                }
+    
+                .more-button {
+                    color: gray;
+                }
+    
+                .facebook-reaction-icon {
+                    max-height: 20px;
+                    max-width: 20px;
+                }
+    
+                .reaction-count {
+                    margin-left: 5px;
+                }
+    
+                button {
+                    ion-icon {
+                        padding: 0px;
+                    }
+    
+                    p {
+                        margin-left: 5px;
+                    }
+                }
+    
+                .like-commment-share-row {
+                    .like-button {
+                        color: map_get($colors, primary);
+                    }
+    
+                    button {
+                        color: gray;
+                        text-transform: none;
+                    }
+                }
+            }
+        }
+    }

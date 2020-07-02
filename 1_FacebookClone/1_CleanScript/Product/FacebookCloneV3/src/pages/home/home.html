@@ -1,0 +1,119 @@
+<ion-header [scrollingHeader]='content'>
+	<search-header></search-header>
+</ion-header>
+
+<ion-content padding>
+	<ion-card class="stories-card" *ngIf="!search">
+		<ion-item>
+			<p class="stories-title" item-start>Stories</p>
+
+			<ion-row item-end>
+				<button ion-button clear icon-only small>
+					<ion-icon name="md-play"></ion-icon>
+					<p>Play All</p>
+				</button>
+			</ion-row>
+		</ion-item>
+
+		<ion-scroll scrollX="true" scroll-avatar>
+			<ion-col class="scroll-item" text-center>
+				<img src="assets/imgs/buddy.png">
+				<p>You</p>
+			</ion-col>
+
+			<ion-col class="scroll-item" text-center>
+				<ion-avatar>
+					<img
+						src="https://res.cloudinary.com/cediim8/image/upload/v1521091160/avatars/pexels-photo-375880-min.jpg">
+				</ion-avatar>
+				<p>Adam</p>
+			</ion-col>
+
+			<ion-col class="scroll-item" text-center>
+				<ion-avatar>
+					<img
+						src="https://res.cloudinary.com/cediim8/image/upload/v1521091160/avatars/pexels-photo-372042-min.jpg">
+				</ion-avatar>
+				<p>Susie</p>
+			</ion-col>
+
+			<ion-col class="scroll-item" text-center>
+				<ion-avatar>
+					<img
+						src="https://res.cloudinary.com/cediim8/image/upload/v1521091160/avatars/pexels-photo-428338-min.jpg">
+				</ion-avatar>
+				<p>Katie</p>
+			</ion-col>
+
+			<ion-col class="scroll-item" text-center>
+				<ion-avatar>
+					<img
+						src="https://res.cloudinary.com/cediim8/image/upload/v1521091162/avatars/pexels-photo-428339-min.jpg">
+				</ion-avatar>
+				<p>Ronald</p>
+			</ion-col>
+
+			<ion-col class="scroll-item" text-center>
+				<ion-avatar>
+					<img
+						src="https://res.cloudinary.com/cediim8/image/upload/v1521091162/avatars/pexels-photo-733872-min.jpg">
+				</ion-avatar>
+				<p>Jaimie</p>
+			</ion-col>
+
+			<ion-col class="scroll-item" text-center>
+				<ion-avatar>
+					<img
+						src="https://res.cloudinary.com/cediim8/image/upload/v1521091161/avatars/pexels-photo-428341-min.jpg">
+				</ion-avatar>
+				<p>Kirk</p>
+			</ion-col>
+
+			<ion-col class="scroll-item" text-center>
+				<ion-avatar>
+					<img
+						src="https://res.cloudinary.com/cediim8/image/upload/v1521091163/avatars/pexels-photo-573299-min.jpg">
+				</ion-avatar>
+				<p>Sammy</p>
+			</ion-col>
+
+			<ion-col class="scroll-item" text-center>
+				<ion-avatar>
+					<img
+						src="https://res.cloudinary.com/cediim8/image/upload/v1521091163/avatars/pexels-photo-462680-min.jpg">
+				</ion-avatar>
+				<p>Karl</p>
+			</ion-col>
+
+			<ion-col class="scroll-item" text-center>
+				<ion-avatar>
+					<img
+						src="https://res.cloudinary.com/cediim8/image/upload/v1521091163/avatars/pexels-photo-601317-min.jpg">
+				</ion-avatar>
+				<p>Susan</p>
+			</ion-col>
+		</ion-scroll>
+	</ion-card>
+
+	<ion-card class="status-card" *ngIf="!search">
+		<ion-item text-center>
+			<ion-avatar item-start (click)="goToProfile()">
+				<img style="object-fit: cover" *ngIf="account && account.photoURL" src="{{ account.photoURL }}">
+				<img *ngIf="account && !account.photoURL" src="assets/imgs/buddy.png">
+			</ion-avatar>
+
+			<button class="whats-on-your-mind" ion-button full round (click)="addPost()">
+				<p>What's on your mind?</p>
+			</button>
+
+			<div item-end>
+				<button class="image-button" ion-button clear icon-only (click)="addPost()">
+					<ion-icon name="md-images"></ion-icon>
+				</button>
+				<p>Photo</p>
+			</div>
+		</ion-item>
+	</ion-card>
+
+	<timeline [timeline]="timeline"></timeline>
+</ion-content>

@@ -1,0 +1,98 @@
+page-page-form {
+    .step1-div{
+        text-align: center;
+        margin-top: 30px;
+        h3{
+            margin: 25px 0px;
+            font-weight: normal;
+            font-size: 25px;
+        }
+        .text{
+            font-size: 17px;
+        }
+    }
+    .step2-div{
+        div{
+            h3{
+                margin: 25px 0px;
+                font-weight: normal;
+                font-size: 25px;
+            }
+            .text{
+                font-size: 17px;
+            }
+            ion-item{
+                padding-left: 0px;
+                margin: 25px 0px;
+            }
+        }
+
+    }
+    .step3-div{
+        div{
+            h3{
+                margin: 25px 0px;
+                font-weight: normal;
+                font-size: 25px;
+            }
+            .text{
+                font-size: 17px;
+            }
+            ion-item{
+                padding-left: 0px;
+                margin: 25px 0px;
+            }
+            p{
+                color: gray;
+                margin: 15px 0px;
+                font-size: 12px
+            }
+        }
+    }
+    .step4-div{
+        div{
+            .text{
+                font-size: 17px;
+            }
+            p{
+                color: gray;
+                margin: 15px 0px;
+                font-size: 12px
+            }
+            ion-list{
+                ion-item{
+                    // min-height: 1.4rem;
+                    // height: 8rem;
+                    padding-left: 0px
+                }
+            }
+            div{
+                margin: 20px 0px;
+                font-size: 15px;
+            }
+        }
+    }
+    .step5-div{
+        div{
+            .text{
+                font-size: 17px;
+            }
+            p{
+                color: gray;
+                margin: 15px 0px;
+                font-size: 12px
+            }
+            ion-list{
+                ion-item{
+                    // min-height: 1.4rem;
+                    // height: 8rem;
+                    padding-left: 0px
+                }
+            }
+            div{
+                margin: 20px 0px;
+                font-size: 15px;
+            }
+        }
+    }
+}

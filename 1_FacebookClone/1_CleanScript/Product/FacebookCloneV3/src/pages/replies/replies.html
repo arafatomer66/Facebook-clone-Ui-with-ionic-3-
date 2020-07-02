@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons left>
+      <ion-row>
+        <button ion-button icon-only clear (click)="goBack()">
+          <ion-icon name="ios-arrow-back"></ion-icon>
+        </button>
+      </ion-row>
+    </ion-buttons>
+
+    <ion-title>Replies</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list no-lines>
+    <ion-item *ngFor="let reply of replies">
+      <ion-row>
+        <ion-col col-2>
+          <ion-avatar>
+            <img src="{{reply.profilePicture}}">
+          </ion-avatar>
+        </ion-col>
+
+        <ion-col col-10>
+          <p></p>
+          <p class="comment-content line-break">
+            <strong>{{reply.name}}</strong>
+            <br> {{reply.content}}
+          </p>
+
+          <ion-row class="reply-row">
+            <ion-item>
+              <ion-row item-start>
+                <p>1h</p>
+                <p>
+                  <strong>Reply</strong>
+                </p>
+              </ion-row>
+            </ion-item>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-item>
+    <button ion-button clear icon-only item-start>
+      <ion-icon name="md-camera"></ion-icon>
+    </button>
+
+    <ion-input placeholder="Write a reply..."></ion-input>
+
+    <div item-end>
+      <button ion-button clear>
+        <p>GIF</p>
+      </button>
+
+      <button ion-button clear icon-only>
+        <ion-icon name="md-happy"></ion-icon>
+      </button>
+    </div>
+  </ion-item>
+</ion-footer>

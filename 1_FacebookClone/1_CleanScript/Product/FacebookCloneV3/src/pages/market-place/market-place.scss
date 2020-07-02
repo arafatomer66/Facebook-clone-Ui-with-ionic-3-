@@ -1,0 +1,81 @@
+page-market-place {
+    ion-content.content-md[padding] .scroll-content, ion-content.content-ios[padding] .scroll-content {
+        padding: 0px !important;
+    }
+
+    .content {        
+        background-color: lightgray;
+        
+        .card-md, .card-ios {
+            margin: 0 0 10px 0;
+            width: 100%;
+        }
+        
+        ion-scroll[scrollX] {
+            white-space: nowrap;
+            height: 50px;
+            overflow: hidden;
+
+            button {
+                border-color: gray;
+                padding: 8px;
+
+                img {
+                    height: 30px;
+                    width: 30px;
+                    margin-right: 10px;
+                    border-radius: 25px;
+                }
+
+                p {
+                    text-transform: none;
+                    font-weight: bold;
+                }
+            }
+        }
+        
+          /* Hide ion-content scrollbar */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        .listing-card {
+            p {
+                text-align: start;
+            }
+
+            ion-icon {
+                color: gray;
+            }
+        }
+
+        .filters-card {
+            button {
+                background-color: map_get($colors, primary);
+                padding: 5px; 
+
+                p {
+                    color: white;
+                }
+
+                ion-icon {
+                    color: white;
+                    margin-left: 10px;
+                }
+            }
+        }
+
+        .top-picks-card {
+            p {
+                color: black;
+                font-weight: bold;
+                margin: 5px;
+            }
+
+            img {
+                height: 100%;
+                width: 100%;
+            }
+        }
+    }
+}
